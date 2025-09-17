@@ -1,125 +1,95 @@
-# Medicare Web Admin
+# 🏥 Clinic Website – Admin Panel
 
-A React-based admin panel for clinic management system.
+## 📌 Overview
+The **Clinic Website** is a management platform for appointments, patient records, prescriptions, and overall operations of a healthcare facility.  
 
-## Build Process
+The system consists of two main parts:  
+- **User Interface**: for patients and visitors.  
+- **Admin Panel**: for administrators, doctors, and medical staff.  
 
-The project uses a custom build process to handle the `/admin` base path for Vercel deployment:
+---
 
-1. **Vite Build**: Creates the main build in `dist/`
-2. **Postbuild Script**: 
-   - Creates `dist/admin/` directory
-   - Copies `index.html` and `assets/` to `dist/admin/`
-   - Fixes asset paths from `/admin/assets/` to `./assets/`
+## 🚀 Technologies Used
+![React](https://img.shields.io/badge/Frontend-React.js-blue?logo=react)
+![Vite](https://img.shields.io/badge/Build-Vite-yellow?logo=vite)
+![TailwindCSS](https://img.shields.io/badge/UI-TailwindCSS-38B2AC?logo=tailwindcss)
+![Laravel](https://img.shields.io/badge/Backend-Laravel-red?logo=laravel)
+![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?logo=mysql)
+![GitHub Actions](https://img.shields.io/badge/CI/CD-GitHub_Actions-2088FF?logo=githubactions)
+![Cloud](https://img.shields.io/badge/Deploy-AWS%2FDigitalOcean-orange?logo=cloud)
 
-## Deployment
+- **Frontend**: React.js + Vite → Fast, interactive, and real-time experience.  
+- **UI**: Tailwind CSS → Responsive and consistent design.  
+- **Backend**: PHP (Laravel Framework) → RESTful APIs, authentication, database management.  
+- **Database**: MySQL or equivalent.  
+- **Deployment**: Hosting with SSL, cloud-ready (AWS, DigitalOcean).  
+- **Version Control & CI/CD**: Git + GitHub Actions.  
 
-The application is configured for deployment on Vercel with the following structure:
+---
 
-```
-dist/
-├── index.html          # Main entry point
-├── assets/             # Main assets
-└── admin/
-    ├── index.html      # Admin entry point (with fixed asset paths)
-    └── assets/         # Admin assets (copy of main assets)
-```
+## 📊 Key Features
 
-## Configuration Files
+### 🔹 1. Dashboard
+- Overview of system activities: doctors, patients, appointments (pending, confirmed, completed, canceled, rejected).  
+- Real-time updates for monitoring.  
 
-- `vercel.json`: Vercel deployment configuration
-- `public/_redirects`: SPA routing rules
-- `scripts/fix-assets.js`: Asset path fixing script
+### 🔹 2. Appointment Management & Check-in
+- Create and manage appointments.  
+- Track statuses: pending, confirmed, checked-in, canceled.  
+- Patient check-in tracking.  
 
-## Development
+### 🔹 3. Financial Management
+- **Transactions**: Manage payment history.  
+- **Invoices**: Generate/export electronic invoices.  
+- **Payments**: Manual or online (if integrated).  
 
+### 🔹 4. Clinic & Doctor Management
+- Manage clinic info, departments, and specialties.  
+- Add/edit doctors and assign permissions by specialty.  
+
+### 🔹 5. Patient & User Management
+- Manage patients, family members, and contact info.  
+- User account management, role assignment, referrals.  
+
+### 🔹 6. Medical Records & Prescriptions
+- Create and store medical records.  
+- Manage prescriptions: dosage and instructions.  
+
+### 🔹 7. Medicine Management
+- Medicine list with stock, pricing, and details.  
+
+### 🔹 8. Promotions & Marketing
+- Create banners and discount vouchers.  
+- Display testimonials and doctor reviews.  
+
+### 🔹 9. Notifications & Settings
+- Send system-wide notifications.  
+- Configure login screen, forms, roles, and general settings.  
+
+---
+
+## 👥 User Roles & Permissions
+- **Super Admin**: Full control over system, settings, and roles.  
+- **Doctor**: Manage patients, prescriptions, and schedules.  
+- **Staff**: Handle check-ins, appointments, and financial tasks.  
+- **Patient**: Book appointments, view prescriptions, and track records.  
+
+---
+
+## 🔐 Security & Performance
+- Authentication with **JWT** (or PHP sessions).  
+- Role-based access control.  
+- ReactJS + Vite for **fast performance** and mobile responsiveness.  
+- Password and sensitive data **encryption**.  
+
+---
+
+## 🛠️ Usage Instructions
+
+🔗 **Admin Access URL**  
+[https://medicare-web-admin-v2.vercel.app/admin/checkins](https://medicare-web-admin-v2.vercel.app/admin/checkins)
+
+🔑 **Login Credentials**
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-```
-
-## Access
-
-- Development: `http://localhost:3000/admin`
-- Production: `https://your-domain.vercel.app/admin`
-
-## Fullscreen/Black Screen Functionality
-
-### Quick Commands (Browser Console)
-
-Open your browser's developer tools (F12) and run these commands:
-
-#### Make Screen Black
-```javascript
-// Create black overlay
-const overlay = document.createElement('div');
-overlay.style.cssText = `
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #000000;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 24px;
-`;
-overlay.innerHTML = '<div>Screen is now black</div>';
-document.body.appendChild(overlay);
-```
-
-#### Remove Black Screen
-```javascript
-// Remove black overlay
-const overlay = document.querySelector('div[style*="background-color: #000000"]');
-if (overlay) overlay.remove();
-```
-
-#### Toggle Fullscreen
-```javascript
-// Toggle browser fullscreen
-if (!document.fullscreenElement) {
-  document.documentElement.requestFullscreen();
-} else {
-  document.exitFullscreen();
-}
-```
-
-#### Dark Mode
-```javascript
-// Toggle dark mode
-document.body.classList.toggle('dark-mode');
-if (document.body.classList.contains('dark-mode')) {
-  document.body.style.cssText = `
-    background-color: #000000 !important;
-    color: #ffffff !important;
-  `;
-} else {
-  document.body.style.cssText = '';
-}
-```
-
-### Bookmarklet (One-Click Solution)
-
-Create a bookmark with this JavaScript code:
-
-**Black Screen:**
-```javascript
-javascript:(function(){const o=document.createElement('div');o.style.cssText='position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;color:white;font-size:24px';o.innerHTML='<div>Screen is black</div>';document.body.appendChild(o);})();
-```
-
-**Fullscreen:**
-```javascript
-javascript:(function(){if(!document.fullscreenElement){document.documentElement.requestFullscreen()}else{document.exitFullscreen()}})();
-```
-
-### Keyboard Shortcuts
-
-You can also use these browser shortcuts:
-- **F11** - Toggle fullscreen
-- **Ctrl+Shift+I** - Open developer tools
-- **Ctrl+Shift+J** - Open console
+Email: admin@gmail.com
+Password: admin@123
